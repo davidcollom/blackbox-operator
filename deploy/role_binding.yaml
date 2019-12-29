@@ -1,0 +1,11 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: blackbox-operator-ansible
+subjects:
+- kind: ServiceAccount
+  name: blackbox-operator-ansible
+roleRef:
+  kind: Role
+  name: blackbox-operator-ansible
+  apiGroup: rbac.authorization.k8s.io

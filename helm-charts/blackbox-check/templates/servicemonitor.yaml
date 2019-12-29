@@ -1,0 +1,42 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ template "blackbox-check.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "blackbox-check.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    helm.sh/chart: {{ include "blackbox-check.chart" . }}
+    {{- if .Values.labels }}
+    {{- toYaml .Values.labels | nindent 4 }}
+    {{- end }}
+spec:
+  endpoints:
+  - port: http
+    scheme: http
+    path: "/probe"
+    interval: {{ .Values.interval }}
+    scrapeTimeout: {{ .Values.scrapeTimeout }}
+    params:
+      module:
+      - {{ .Values.module }}
+      target:
+      - {{ .Values.url }}
+    metricRelabelings:
+      - sourceLabels: [__address__]
+        targetLabel: __param_target
+      - sourceLabels: [__param_target]
+        targetLabel: instance
+      - targetLabel: target
+        {{- if .Values.urlHumanReadable }}
+        replacement: {{ .Values.urlHumanReadable }}
+        {{- else }}
+        replacement: {{ .Values.url }}
+        {{- end }}
+  jobLabel: "{{ .Release.Name }}"
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: {{ .Values.blackboxInstanceName }}
+  namespaceSelector:
+    matchNames:
+      - {{ .Release.Namespace }}

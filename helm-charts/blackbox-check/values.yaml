@@ -1,0 +1,10 @@
+---
+blackboxInstanceName: example-blackbox
+labels: {}
+interval: 10s
+scrapeTimeout: 10s
+module: http_2xx
+# The URL that blackbox will scrape
+url: '' # http://example.com/healthz
+# Optional human readable URL that will appear in Prometheus / AlertManager
+urlHumanReadable: #www.example.com

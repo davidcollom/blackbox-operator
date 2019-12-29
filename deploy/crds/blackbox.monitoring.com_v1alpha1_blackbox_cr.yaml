@@ -1,0 +1,8 @@
+apiVersion: blackbox.monitoring.com/v1alpha1
+kind: Blackbox
+metadata:
+  name: example-blackbox
+spec:
+  nameOverride: blackbox-exporter
+  podDisruptionBudget:
+    enabled: false

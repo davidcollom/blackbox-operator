@@ -1,0 +1,40 @@
+---
+apiVersion: blackbox.monitoring.com/v1alpha1
+kind: BlackboxCheck
+metadata:
+  name: example-check
+spec:
+  labels: {}
+  interval: 30s
+  scrapeTimeout: 30s
+  module: http_2xx
+  # The URL that blackbox will scrape
+  url: http://example.com/healthz
+  # Optional human readable URL that will appear in Prometheus / AlertManager
+  urlHumanReadable:  www.example.com
+---
+apiVersion: blackbox.monitoring.com/v1alpha1
+kind: BlackboxCheck
+metadata:
+  name: google-check
+spec:
+  labels: {}
+  interval: 10s
+  scrapeTimeout: 10s
+  module: http_2xx
+  # The URL that blackbox will scrape
+  url: http://google.com/
+---
+apiVersion: blackbox.monitoring.com/v1alpha1
+kind: BlackboxCheck
+metadata:
+  name: canihazip-check
+spec:
+  labels: {}
+  interval: 30s
+  scrapeTimeout: 30s
+  module: http_2xx
+  # The URL that blackbox will scrape
+  url: http://canihazip.com/s
+
+

@@ -1,0 +1,10 @@
+---
+- version: v1alpha1
+  group: blackbox.monitoring.com
+  kind: Blackbox
+  chart: helm-charts/blackbox
+
+- version: v1alpha1
+  group: blackbox.monitoring.com
+  kind: BlackboxCheck
+  chart: helm-charts/blackbox-check

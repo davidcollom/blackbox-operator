@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blackbox-operator-ansible
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: blackbox-operator-ansible
+  template:
+    metadata:
+      labels:
+        name: blackbox-operator-ansible
+    spec:
+      serviceAccountName: blackbox-operator-ansible
+      containers:
+        - name: blackbox-operator-ansible
+          # Replace this with the built image name
+          image: REPLACE_IMAGE
+          imagePullPolicy: Always
+          env:
+            - name: WATCH_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              value: "blackbox-operator-ansible"
