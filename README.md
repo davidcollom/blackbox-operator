@@ -75,4 +75,4 @@ values.
 
 ## License
 
-See the repository for licensing details.
+MIT — see [`LICENSE`](LICENSE).
