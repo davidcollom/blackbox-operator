@@ -28,7 +28,7 @@ The operator serves the `blackbox.monitoring.com` API group:
 | `Blackbox` | `blackbox.monitoring.com` / `v1alpha1` | `helm-charts/blackbox` |
 | `BlackboxCheck` | `blackbox.monitoring.com` / `v1alpha1` | `helm-charts/blackbox-check` |
 
-CRD definitions for all three variants are in `deploy/crds/`:
+CRD definitions and example custom resources are in `deploy/crds/`:
 
 - `blackbox.monitoring.com_blackboxes_crd.yaml`
 - `blackbox.monitoring.com_blackboxchecks_crd.yaml`
@@ -68,8 +68,8 @@ release automatically.
 
 ## Configuration
 
-The Blackbox Exporter chart is configured through its `values.yaml`, and probe definitions are supplied
-through `BlackboxCheck` resources. Refer to
+The Blackbox Exporter chart is configured through its `values.yaml`, and probe definitions are
+supplied through `BlackboxCheck` resources. Refer to
 [`helm-charts/blackbox/README.md`](helm-charts/blackbox/README.md) for the full list of available
 values.
 
